@@ -1,0 +1,58 @@
+[33mcommit 9aecc35e45eba37c21f14c47dab99afe3ec6c8ca[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Quest84 <QuestionSleep123@gmail.com>
+Date:   Wed Oct 21 00:34:16 2020 -0500
+
+    Segundo Commit
+
+[33mcommit 19fdac4e89079c849881b7fe25912c0b5fac298e[m
+Author: Quest84 <QuestionSleep123@gmail.com>
+Date:   Tue Oct 20 23:57:09 2020 -0500
+
+    Segundo Commit - Cls_Main modificado
+
+[33mcommit e8c068a93817898a661f402d5d2115c1360142b7[m
+Author: Quest84 <QuestionSleep123@gmail.com>
+Date:   Tue Oct 20 23:36:21 2020 -0500
+
+     On branch master
+            new file:   build.xml
+            new file:   build/built-jar.properties
+            new file:   build/classes/.netbeans_automatic_build
+            new file:   build/classes/.netbeans_update_resources
+            new file:   build/classes/Clases/Cls_Conexion.class
+            new file:   build/classes/Database/Cls_Main.class
+            new file:   build/classes/Formularios/Frm_Alumnos$1.class
+            new file:   build/classes/Formularios/Frm_Alumnos$10.class
+            new file:   build/classes/Formularios/Frm_Alumnos$11.class
+            new file:   build/classes/Formularios/Frm_Alumnos$12.class
+            new file:   build/classes/Formularios/Frm_Alumnos$13.class
+            new file:   build/classes/Formularios/Frm_Alumnos$14.class
+            new file:   build/classes/Formularios/Frm_Alumnos$15.class
+            new file:   build/classes/Formularios/Frm_Alumnos$2.class
+            new file:   build/classes/Formularios/Frm_Alumnos$3.class
+            new file:   build/classes/Formularios/Frm_Alumnos$4.class
+            new file:   build/classes/Formularios/Frm_Alumnos$5.class
+            new file:   build/classes/Formularios/Frm_Alumnos$6.class
+            new file:   build/classes/Formularios/Frm_Alumnos$7.class
+            new file:   build/classes/Formularios/Frm_Alumnos$8.class
+            new file:   build/classes/Formularios/Frm_Alumnos$9.class
+            new file:   build/classes/Formularios/Frm_Alumnos.class
+            new file:   build/classes/Formularios/Frm_Alumnos.form
+            new file:   "build/classes/L\303\263gica/Cls_Alumno.class"
+            new file:   dist/README.TXT
+            new file:   dist/TAP_DB_Alumnos.jar
+            new file:   dist/lib/mysql-connector-java-5.1.13-bin.jar
+            new file:   manifest.mf
+            new file:   mysql-connector-java-5.1.13-bin.jar
+            new file:   nbproject/build-impl.xml
+            new file:   nbproject/genfiles.properties
+            new file:   nbproject/private/config.properties
+            new file:   nbproject/private/private.properties
+            new file:   nbproject/private/private.xml
+            new file:   nbproject/project.properties
+            new file:   nbproject/project.xml
+            new file:   src/Clases/Cls_Conexion.java
+            new file:   src/Database/Cls_Main.java
+            new file:   src/Formularios/Frm_Alumnos.form
+            new file:   src/Formularios/Frm_Alumnos.java
+            new file:   "src/L\303\263gica/Cls_Alumno.java"
