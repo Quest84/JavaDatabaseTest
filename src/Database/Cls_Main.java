@@ -24,7 +24,7 @@ public class Cls_Main {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error al aplicar el estilo al sistema", JOptionPane.ERROR_MESSAGE);
         }
 
-        JOptionPane.showMessageDialog(null, "Test");
+        // Linea Borrada
         Frm_Alumnos FA = new Frm_Alumnos();
         FA.setVisible(true);
     }
