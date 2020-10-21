@@ -23,7 +23,8 @@ public class Cls_Main {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error al aplicar el estilo al sistema", JOptionPane.ERROR_MESSAGE);
         }
-        
+
+        JOptionPane.showMessageDialog(null, "Test");
         Frm_Alumnos FA = new Frm_Alumnos();
         FA.setVisible(true);
     }
