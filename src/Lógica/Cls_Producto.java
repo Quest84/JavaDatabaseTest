@@ -14,41 +14,41 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Manuel
  */
-public class Cls_Alumno {
+public class Cls_Producto {
 
-    private final String SQL_INSERT = "INSERT INTO Alumno ("
-            + "Nombre, Parcial, Grupo, Calificacion) VALUES (?, ?, ?, ?)";
-    private final String SQL_SELECT = "SELECT * FROM Alumno";
+    private final String SQL_INSERT = "INSERT INTO Producto ("
+            + "Nombre, Marca, Precio, Stock) VALUES (?, ?, ?, ?)";
+    private final String SQL_SELECT = "SELECT * FROM Producto";
     private PreparedStatement PrepStat;
     private DefaultTableModel DefaultTM;
     private ResultSet RSet;
     private final Cls_Conexion Connect;
 
-    public Cls_Alumno() {
+    public Cls_Producto() {
         PrepStat = null;
         Connect = new Cls_Conexion();
     }
 
     private DefaultTableModel setTitulos() {
         DefaultTM = new DefaultTableModel();
-        DefaultTM.addColumn("Matricula");
+        DefaultTM.addColumn("ID");
         DefaultTM.addColumn("Nombre");
-        DefaultTM.addColumn("Parcial");
-        DefaultTM.addColumn("Grupo");
-        DefaultTM.addColumn("Calificacion");
+        DefaultTM.addColumn("Marca");
+        DefaultTM.addColumn("Precio");
+        DefaultTM.addColumn("Stock");
 
         return DefaultTM;
     }
 
     /* Método para insertar datos */
-    public int insertarDatos(String nombre, String parcial, String grupo, float calificacion) {
+    public int insertarDatos(String nombre, String marca, float precio, int stock) {
         int resp = 0;
         try {
             PrepStat = Connect.getConnection().prepareStatement(SQL_INSERT);
             PrepStat.setString(1, nombre);
-            PrepStat.setString(2, parcial);
-            PrepStat.setString(3, grupo);
-            PrepStat.setFloat(4, calificacion);
+            PrepStat.setString(2, marca);
+            PrepStat.setFloat(3, precio);
+            PrepStat.setInt(4, stock);
             resp = PrepStat.executeUpdate();
 
             if (resp > 0) {
@@ -65,10 +65,10 @@ public class Cls_Alumno {
     }
 
     /* Método para modificar los datos */
-    public int updateDatos(String matricula, String nombre, String parcial, String grupo, float calificacion) {
+    public int updateDatos(String id, String nombre, String marca, float precio, int stock) {
         /* La consulta sirve para pasarle los datos de cada campo */
-        String SQL = "UPDATE Alumno SET nombre = '" + nombre + "', parcial = '" + parcial
-                + "', grupo = '" + grupo + "', calificacion = " + calificacion + " WHERE matricula = " + matricula;
+        String SQL = "UPDATE Producto SET nombre= '" + nombre + "', marca= '" + marca
+                + "', precio= '" + precio + "', stock= " + stock + " WHERE id= " + id;
         int resp = 0;
 
         try {
@@ -87,8 +87,8 @@ public class Cls_Alumno {
     }
 
     /* Eliminar datos */
-    public int deleteDatos(String matricula) {
-        String SQL = "DELETE from alumno WHERE matricula = " + matricula;
+    public int deleteDatos(String id) {
+        String SQL = "DELETE from producto WHERE id = " + id;
         int resp = 0;
         try {
             PrepStat = Connect.getConnection().prepareStatement(SQL);
@@ -118,8 +118,8 @@ public class Cls_Alumno {
                 fila[0] = RSet.getInt(1);
                 fila[1] = RSet.getString(2);
                 fila[2] = RSet.getString(3);
-                fila[3] = RSet.getString(4);
-                fila[4] = RSet.getFloat(5);
+                fila[3] = RSet.getFloat(4);
+                fila[4] = RSet.getInt(5);
                 DefaultTM.addRow(fila);
             }
         } catch (SQLException ex) {
@@ -137,16 +137,16 @@ public class Cls_Alumno {
         String SQL = null;
         switch (index) {
             case 0:
-                SQL = "SELECT * FROM Alumno WHERE Matricula LIKE '" + prm + "%'";
+                SQL = "SELECT * FROM Producto WHERE id LIKE '" + prm + "%'";
                 break;
             case 1:
-                SQL = "SELECT * FROM Alumno WHERE Nombre LIKE '" + prm + "%'";
+                SQL = "SELECT * FROM Producto WHERE Nombre LIKE '" + prm + "%'";
                 break;
             case 2:
-                SQL = "SELECT * FROM Alumno WHERE Parcial LIKE '" + prm + "%'";
+                SQL = "SELECT * FROM Producto WHERE Marca LIKE '" + prm + "%'";
                 break;
             case 3:
-                SQL = "SELECT * FROM Alumno WHERE Grupo LIKE '" + prm + "%'";
+                SQL = "SELECT * FROM Producto WHERE Precio LIKE '" + prm + "%'";
             default:
                 break;
         }
@@ -162,8 +162,8 @@ public class Cls_Alumno {
                 fila[0] = RSet.getInt(1);
                 fila[1] = RSet.getString(2);
                 fila[2] = RSet.getString(3);
-                fila[3] = RSet.getString(4);
-                fila[4] = RSet.getFloat(5);
+                fila[3] = RSet.getFloat(4);
+                fila[4] = RSet.getInt(5);
                 DefaultTM.addRow(fila);
             }
         } catch (SQLException ex) {
@@ -181,19 +181,19 @@ public class Cls_Alumno {
         String SQL = null;
         switch (index) {
             case 0:
-                SQL = "SELECT * FROM Alumno ORDER BY Matricula";
+                SQL = "SELECT * FROM Producto ORDER BY id";
                 break;
             case 1:
-                SQL = "SELECT * FROM Alumno ORDER BY Nombre";
+                SQL = "SELECT * FROM Producto ORDER BY Nombre";
                 break;
             case 2:
-                SQL = "SELECT * FROM Alumno ORDER BY Parcial";
+                SQL = "SELECT * FROM Producto ORDER BY Marca";
                 break;
             case 3:
-                SQL = "SELECT * FROM Alumno ORDER BY Grupo";
+                SQL = "SELECT * FROM Producto ORDER BY Precio";
                 break;
             case 4:
-                SQL = "SELECT * FROM Alumno ORDER BY Calificacion";
+                SQL = "SELECT * FROM Producto ORDER BY Stock";
                 break;
             default:
                 break;
@@ -209,8 +209,8 @@ public class Cls_Alumno {
                 fila[0] = RSet.getInt(1);
                 fila[1] = RSet.getString(2);
                 fila[2] = RSet.getString(3);
-                fila[3] = RSet.getString(4);
-                fila[4] = RSet.getFloat(5);
+                fila[3] = RSet.getFloat(4);
+                fila[4] = RSet.getInt(5);
                 DefaultTM.addRow(fila);
             }
         } catch (SQLException ex) {

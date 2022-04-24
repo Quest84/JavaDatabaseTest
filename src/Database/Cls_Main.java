@@ -6,7 +6,7 @@
 package Database;
 
 
-import Formularios.Frm_Alumnos;
+import Formularios.Frm_Productos;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -25,7 +25,7 @@ public class Cls_Main {
         }
 
         // Linea Borrada
-        Frm_Alumnos FA = new Frm_Alumnos();
+        Frm_Productos FA = new Frm_Productos();
         FA.setVisible(true);
     }
     

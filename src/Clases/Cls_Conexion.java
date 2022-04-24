@@ -18,8 +18,8 @@ public class Cls_Conexion {
     
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static final String USER = "QuestionSleep";
-    private static final String PASSWORD = "Parasitedreams1984";
-    private static final String URL = "jdbc:mysql://localhost:3306/tap_db_alumnos";
+    private static final String PASSWORD = "123";
+    private static final String URL = "jdbc:mysql://localhost:3306/negocio";
     private static Connection Connect;
     
     public Cls_Conexion(){

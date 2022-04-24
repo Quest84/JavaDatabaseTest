@@ -5,7 +5,7 @@
  */
 package Formularios;
 
-import Lógica.Cls_Alumno;
+import Lógica.Cls_Producto;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -15,49 +15,49 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author Manuel
  */
-public class Frm_Alumnos extends javax.swing.JFrame {
+public class Frm_Productos extends javax.swing.JFrame {
 
-    private final Cls_Alumno CA;
+    private final Cls_Producto Prod;
     int num = 0;
 
-    public Frm_Alumnos() {
-        setTitle("Practica 1 - TAP Conexión a BD");
+    public Frm_Productos() {
+        setTitle("Base de Datos - Mueblería Perla");
         initComponents();
-        CA = new Cls_Alumno();
+        Prod = new Cls_Producto();
         listar();
         this.setLocationRelativeTo(null);
     }
 
     private void listar() {
-        jtb_datos.setModel(CA.getDatos());
+        jtb_datos.setModel(Prod.getDatos());
     }
 
     private void limpiar() {
-        jtf_Matricula.setText("");
-        jtf_Alumno.setText("");
-        jtf_Parcial.setText("");
-        jtf_Grupo.setText("");
-        jtf_Calificacion.setText("");
+        jtf_ID.setText("");
+        jtf_Producto.setText("");
+        jtf_Marca.setText("");
+        jtf_Precio.setText("");
+        jtf_Stock.setText("");
         num = 0;
     }
 
     private void guardar() {
         try {
-            String matricula = jtf_Matricula.getText();
-            String nombre = jtf_Alumno.getText();
-            String parcial = jtf_Parcial.getText();
-            String grupo = jtf_Grupo.getText();
-            float calificacion = Float.parseFloat(jtf_Calificacion.getText());
+            String id = jtf_ID.getText();
+            String nombre = jtf_Producto.getText();
+            String marca = jtf_Marca.getText();
+            float precio = Float.parseFloat(jtf_Precio.getText());
+            int stock = Integer.parseInt(jtf_Stock.getText());
 
             if (num == 0) {
-                int respuesta = CA.insertarDatos(nombre, parcial, grupo, calificacion);
+                int respuesta = Prod.insertarDatos(nombre, marca, precio, stock);
                 // Actualizar la lista
                 if (respuesta > 0) {
                     listar();
                     limpiar();
                 }
             } else {
-                int respuesta = CA.updateDatos(matricula, nombre, parcial, grupo, calificacion);
+                int respuesta = Prod.updateDatos(id, nombre, marca, precio, stock);
                 if (respuesta > 0) {
                     listar();
                     limpiar();
@@ -78,16 +78,17 @@ public class Frm_Alumnos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSpinner1 = new javax.swing.JSpinner();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jtf_Alumno = new javax.swing.JTextField();
+        Producto = new javax.swing.JLabel();
+        jtf_Producto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jtf_Matricula = new javax.swing.JTextField();
-        jtf_Parcial = new javax.swing.JTextField();
-        jtf_Grupo = new javax.swing.JTextField();
-        jtf_Calificacion = new javax.swing.JTextField();
+        jtf_ID = new javax.swing.JTextField();
+        jtf_Marca = new javax.swing.JTextField();
+        jtf_Precio = new javax.swing.JTextField();
+        jtf_Stock = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -111,7 +112,7 @@ public class Frm_Alumnos extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Alumnos");
+        jLabel1.setText("Mueblería Perla");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,47 +135,52 @@ public class Frm_Alumnos extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Alumno", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Roboto", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Alumno");
+        Producto.setForeground(new java.awt.Color(255, 255, 255));
+        Producto.setText("Producto");
 
-        jtf_Alumno.addActionListener(new java.awt.event.ActionListener() {
+        jtf_Producto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtf_AlumnoActionPerformed(evt);
+                jtf_ProductoActionPerformed(evt);
             }
         });
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Matricula");
+        jLabel3.setText("ID");
 
-        jtf_Matricula.setEditable(false);
-
-        jtf_Parcial.addActionListener(new java.awt.event.ActionListener() {
+        jtf_ID.setEditable(false);
+        jtf_ID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtf_ParcialActionPerformed(evt);
+                jtf_IDActionPerformed(evt);
             }
         });
 
-        jtf_Grupo.addActionListener(new java.awt.event.ActionListener() {
+        jtf_Marca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtf_GrupoActionPerformed(evt);
+                jtf_MarcaActionPerformed(evt);
             }
         });
 
-        jtf_Calificacion.addActionListener(new java.awt.event.ActionListener() {
+        jtf_Precio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtf_CalificacionActionPerformed(evt);
+                jtf_PrecioActionPerformed(evt);
+            }
+        });
+
+        jtf_Stock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtf_StockActionPerformed(evt);
             }
         });
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Parcial");
+        jLabel4.setText("Marca");
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Grupo");
+        jLabel5.setText("Precio");
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Calificacion");
+        jLabel6.setText("Stock");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -184,27 +190,26 @@ public class Frm_Alumnos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_Grupo, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_Parcial, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jtf_Marca, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(Producto))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_Alumno, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtf_Producto, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                            .addComponent(jtf_ID)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtf_Calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtf_Matricula, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtf_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtf_Stock, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,22 +217,22 @@ public class Frm_Alumnos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jtf_Matricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtf_Alumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Producto)
+                    .addComponent(jtf_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtf_Parcial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtf_Marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtf_Grupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtf_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtf_Calificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtf_Stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)))
         );
 
@@ -249,7 +254,7 @@ public class Frm_Alumnos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtb_datos);
 
-        jcb_buscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matricula", "Alumno", "Parcial", "Grupo" }));
+        jcb_buscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Producto", "Marca", "Precio" }));
         jcb_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcb_buscarActionPerformed(evt);
@@ -302,7 +307,7 @@ public class Frm_Alumnos extends javax.swing.JFrame {
             }
         });
 
-        jcb_OrderMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matricula", "Alumno", "Parcial", "Grupo" }));
+        jcb_OrderMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Producto", "Marca", "Precio", "Stock" }));
         jcb_OrderMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcb_OrderMenuActionPerformed(evt);
@@ -378,29 +383,13 @@ public class Frm_Alumnos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtf_AlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_AlumnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_AlumnoActionPerformed
-
-    private void jtf_ParcialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_ParcialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_ParcialActionPerformed
-
-    private void jtf_GrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_GrupoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_GrupoActionPerformed
-
-    private void jtf_CalificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_CalificacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_CalificacionActionPerformed
-
     private void jtb_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtb_datosMouseClicked
         int row = jtb_datos.getSelectedRow();
-        jtf_Matricula.setText(jtb_datos.getValueAt(row, 0).toString());
-        jtf_Alumno.setText(jtb_datos.getValueAt(row, 1).toString());
-        jtf_Parcial.setText(jtb_datos.getValueAt(row, 2).toString());
-        jtf_Grupo.setText(jtb_datos.getValueAt(row, 3).toString());
-        jtf_Calificacion.setText(jtb_datos.getValueAt(row, 4).toString());
+        jtf_ID.setText(jtb_datos.getValueAt(row, 0).toString());
+        jtf_Producto.setText(jtb_datos.getValueAt(row, 1).toString());
+        jtf_Marca.setText(jtb_datos.getValueAt(row, 2).toString());
+        jtf_Precio.setText(jtb_datos.getValueAt(row, 3).toString());
+        jtf_Stock.setText(jtb_datos.getValueAt(row, 4).toString());
 
         num = 1;
 
@@ -413,7 +402,7 @@ public class Frm_Alumnos extends javax.swing.JFrame {
     private void jtf_buscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtf_buscarKeyReleased
         char tecla = evt.getKeyChar();
         if (tecla == KeyEvent.VK_ENTER) {
-            jtb_datos.setModel(CA.getDato(jcb_buscar.getSelectedIndex(), jtf_buscar.getText()));
+            jtb_datos.setModel(Prod.getDato(jcb_buscar.getSelectedIndex(), jtf_buscar.getText()));
         }
     }//GEN-LAST:event_jtf_buscarKeyReleased
 
@@ -429,7 +418,7 @@ public class Frm_Alumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_jbt_guardarActionPerformed
 
     private void jtb_OrderByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtb_OrderByActionPerformed
-        jtb_datos.setModel(CA.orderDato(jcb_OrderMenu.getSelectedIndex()));
+        jtb_datos.setModel(Prod.orderDato(jcb_OrderMenu.getSelectedIndex()));
     }//GEN-LAST:event_jtb_OrderByActionPerformed
 
     private void jtb_HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtb_HomeActionPerformed
@@ -445,7 +434,7 @@ public class Frm_Alumnos extends javax.swing.JFrame {
         if (fila < 1) {
             JOptionPane.showMessageDialog(null, "Seleccione un elemento para eliminar", "ERROR-405", JOptionPane.ERROR_MESSAGE);
         } else {
-            if (CA.deleteDatos(jtb_datos.getValueAt(jtb_datos.getSelectedRow(), 0).toString()) > 0) {
+            if (Prod.deleteDatos(jtb_datos.getValueAt(jtb_datos.getSelectedRow(), 0).toString()) > 0) {
                 limpiar();
                 listar();
                 num = 0;
@@ -460,6 +449,26 @@ public class Frm_Alumnos extends javax.swing.JFrame {
     private void jcb_OrderMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcb_OrderMenuActionPerformed
 
     }//GEN-LAST:event_jcb_OrderMenuActionPerformed
+
+    private void jtf_StockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_StockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_StockActionPerformed
+
+    private void jtf_PrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_PrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_PrecioActionPerformed
+
+    private void jtf_MarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_MarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_MarcaActionPerformed
+
+    private void jtf_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_IDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_IDActionPerformed
+
+    private void jtf_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_ProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_ProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -481,14 +490,14 @@ public class Frm_Alumnos extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Frm_Alumnos().setVisible(true);
+                new Frm_Productos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Producto;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -498,6 +507,7 @@ public class Frm_Alumnos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JButton jbt_eliminar1;
     private javax.swing.JButton jbt_guardar;
     private javax.swing.JButton jbt_nuevo;
@@ -506,11 +516,11 @@ public class Frm_Alumnos extends javax.swing.JFrame {
     private javax.swing.JButton jtb_Home;
     private javax.swing.JButton jtb_OrderBy;
     private javax.swing.JTable jtb_datos;
-    private javax.swing.JTextField jtf_Alumno;
-    private javax.swing.JTextField jtf_Calificacion;
-    private javax.swing.JTextField jtf_Grupo;
-    private javax.swing.JTextField jtf_Matricula;
-    private javax.swing.JTextField jtf_Parcial;
+    private javax.swing.JTextField jtf_ID;
+    private javax.swing.JTextField jtf_Marca;
+    private javax.swing.JTextField jtf_Precio;
+    private javax.swing.JTextField jtf_Producto;
+    private javax.swing.JTextField jtf_Stock;
     private javax.swing.JTextField jtf_buscar;
     // End of variables declaration//GEN-END:variables
 }
