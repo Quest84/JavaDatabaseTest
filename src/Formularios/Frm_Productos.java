@@ -462,7 +462,7 @@ public class Frm_Productos extends javax.swing.JFrame {
         int fila = jtb_datos.getSelectedRowCount();
         if (fila < 1) {
             JOptionPane.showMessageDialog(null, "Seleccione un elemento para eliminar", "ERROR-405", JOptionPane.ERROR_MESSAGE);
-        } else {
+        } else {            
             if (Prod.deleteDatos(jtb_datos.getValueAt(jtb_datos.getSelectedRow(), 0).toString()) > 0) {
                 limpiar();
                 listar();

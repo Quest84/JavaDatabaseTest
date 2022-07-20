@@ -16,9 +16,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Cls_Producto {
 
-    private final String SQL_INSERT = "INSERT INTO Producto ("
+    private final String SQL_INSERT = "INSERT INTO producto ("
             + "Nombre, Marca, Precio, Stock) VALUES (?, ?, ?, ?)";
-    private final String SQL_SELECT = "SELECT * FROM Producto";
+    private final String SQL_SELECT = "SELECT * FROM producto";
     private PreparedStatement PrepStat;
     private DefaultTableModel DefaultTM;
     private ResultSet RSet;
@@ -67,7 +67,7 @@ public class Cls_Producto {
     /* Método para modificar los datos */
     public int updateDatos(String id, String nombre, String marca, float precio, int stock) {
         /* La consulta sirve para pasarle los datos de cada campo */
-        String SQL = "UPDATE Producto SET nombre= '" + nombre + "', marca= '" + marca
+        String SQL = "UPDATE producto SET Nombre= '" + nombre + "', marca= '" + marca
                 + "', precio= '" + precio + "', stock= " + stock + " WHERE id= " + id;
         int resp = 0;
 
@@ -89,20 +89,29 @@ public class Cls_Producto {
     /* Eliminar datos */
     public int deleteDatos(String id) {
         String SQL = "DELETE from producto WHERE id = " + id;
-        int resp = 0;
-        try {
-            PrepStat = Connect.getConnection().prepareStatement(SQL);
-            resp = PrepStat.executeUpdate();
-            if (resp > 0) {
-                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+
+        int confirm = JOptionPane.showConfirmDialog(null, "Deseas eliminar el registro " + id, "Confirmación", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            int resp = 0;
+            try {
+                PrepStat = Connect.getConnection().prepareStatement(SQL);
+                resp = PrepStat.executeUpdate();
+                if (resp > 0) {
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                }
+            } catch (SQLException ex) {
+                System.err.println("Error al eliminar los datos:" + ex.getMessage());
+            } finally {
+                PrepStat = null;
+                Connect.Desconectar();
             }
-        } catch (SQLException ex) {
-            System.err.println("Error al eliminar los datos:" + ex.getMessage());
-        } finally {
-            PrepStat = null;
-            Connect.Desconectar();
+            System.out.println("resp = " + resp); 
+            return resp;
+        } else {
+            //OptionPane.showMessageDialog(null, "");
+            return 0;
         }
-        return resp;
+
     }
 
     /* Método para mostrar los datos */
@@ -137,16 +146,16 @@ public class Cls_Producto {
         String SQL = null;
         switch (index) {
             case 0:
-                SQL = "SELECT * FROM Producto WHERE id LIKE '" + prm + "%'";
+                SQL = "SELECT * FROM producto WHERE id LIKE '" + prm + "%'";
                 break;
             case 1:
-                SQL = "SELECT * FROM Producto WHERE Nombre LIKE '" + prm + "%'";
+                SQL = "SELECT * FROM producto WHERE Nombre LIKE '" + prm + "%'";
                 break;
             case 2:
-                SQL = "SELECT * FROM Producto WHERE Marca LIKE '" + prm + "%'";
+                SQL = "SELECT * FROM producto WHERE Marca LIKE '" + prm + "%'";
                 break;
             case 3:
-                SQL = "SELECT * FROM Producto WHERE Precio LIKE '" + prm + "%'";
+                SQL = "SELECT * FROM producto WHERE Precio LIKE '" + prm + "%'";
             default:
                 break;
         }
@@ -181,30 +190,30 @@ public class Cls_Producto {
         String SQL = null;
         switch (index) {
             case 0:
-                SQL = "SELECT * FROM Producto ORDER BY id";
+                SQL = "SELECT * FROM producto ORDER BY id";
                 break;
             case 1:
-                SQL = "SELECT * FROM Producto ORDER BY Nombre";
+                SQL = "SELECT * FROM producto ORDER BY Nombre";
                 break;
             case 2:
-                SQL = "SELECT * FROM Producto ORDER BY Marca";
+                SQL = "SELECT * FROM producto ORDER BY Marca";
                 break;
             case 3:
-                SQL = "SELECT * FROM Producto ORDER BY Precio";
+                SQL = "SELECT * FROM producto ORDER BY Precio";
                 break;
             case 4:
-                SQL = "SELECT * FROM Producto ORDER BY Stock";
+                SQL = "SELECT * FROM producto ORDER BY Stock";
                 break;
             default:
                 break;
-        } 
+        }
         try {
             setTitulos();
             PrepStat = Connect.getConnection().prepareStatement(SQL);
             RSet = PrepStat.executeQuery();
-            
+
             // Crear el arreglo para recorrer las dilas de la tabla
-            Object[]fila = new Object[5];
+            Object[] fila = new Object[5];
             while (RSet.next()) {
                 fila[0] = RSet.getInt(1);
                 fila[1] = RSet.getString(2);
