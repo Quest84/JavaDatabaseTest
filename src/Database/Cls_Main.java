@@ -15,7 +15,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author Manuel
  */
-public class Cls_Main {
+public class Cls_Main { 
 
     public static void main(String[] args) {
         try {
