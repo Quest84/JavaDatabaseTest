@@ -1,19 +1,19 @@
-DROP DATABASE IF EXISTS NEGOCIO;
+DROP DATABASE IF EXISTS negocio;
 
-CREATE DATABASE NEGOCIO;
+CREATE DATABASE negocio;
 
-USE NEGOCIO;
+USE negocio;
 
-CREATE TABLE PRODUCTO(
+CREATE TABLE producto(
 
 	id int PRIMARY KEY AUTO_INCREMENT,
-       	Nombre varchar(40),
+  	Nombre varchar(40),
 	Marca varchar(40),
 	Precio float,
 	Stock int
 );
 
-INSERT INTO PRODUCTO (Nombre, Marca, Precio, Stock) VALUES
+INSERT INTO producto (Nombre, Marca, Precio, Stock) VALUES
 	( "Manguera", "Marca1", 100, 90 ),
 	( "Manguera", "Marca2", 200, 80 ),
 	( "Manguera", "Marca3", 300, 70 ),
